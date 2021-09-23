@@ -34,6 +34,7 @@ productController.package.save = async (req, res) => {
 	if(!package.name || package.name.length > 50){return res.send({ msg: 'O nome do pacote é inválido.' })};
 	if(!package.color){return res.send({ msg: 'A cor do pacote é inválida.' })};
 	if(!package.weight || isNaN(package.weight)){ return res.send({ msg: 'O peso do pacote é inválido.' }); };
+	if(!package.status){return res.send({ msg: 'O status do pacote é inválido.' })};
 		
 	var row = await Product.package.findByCode(package.code);
 	if(row.length){
@@ -77,6 +78,7 @@ productController.package.filter = async (req, res) => {
 	lib.Query.fillParam("package.code", req.body.package.code, strict_params);
 	lib.Query.fillParam("package.name", req.body.package.name, params);
 	lib.Query.fillParam("package.color", req.body.package.color, strict_params);
+	// lib.Query.fillParam("package.status", req.body.package.status, strict_params);
 
 	let order_params = [ ["package.code","ASC"] ];
 
