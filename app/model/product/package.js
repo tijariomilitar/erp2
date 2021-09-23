@@ -5,13 +5,14 @@ const Lib = require("jarmlib");
 
 Product.package = {
 	save: async (package) => {
-		let query = "INSERT INTO cms_wt_erp.product_package (code, name, color, weight, image, status, announcement) VALUES ('"
+		let query = "INSERT INTO cms_wt_erp.product_package (code, name, color, weight, image, status, brand, announcement) VALUES ('"
 			+package.code+"', '"
 			+package.name+"', '"
 			+package.color+"', '"
 			+package.weight+"', '"
 			+package.image+"', '"
 			+package.status+"', '"
+			+package.brand+"', '"
 			+package.announcement+"');";
 		return db(query);
 	},
@@ -22,6 +23,7 @@ Product.package = {
 			+"', weight='"+package.weight
 			+"', image='"+package.image
 			+"', status='"+package.status
+			+"', brand='"+package.brand
 			+"', announcement='"+package.announcement+"' WHERE id='"+package.id+"';";
 		return db(query);
 	},

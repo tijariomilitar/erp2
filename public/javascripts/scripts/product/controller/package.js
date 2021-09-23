@@ -13,6 +13,7 @@ if(Product.controller.package.create){
 			weight: event.target.elements.namedItem("weight").value,
 			image: event.target.elements.namedItem("image").value,
 			status: event.target.elements.namedItem("status").value,
+			brand: event.target.elements.namedItem("brand").value,
 			announcement: event.target.elements.namedItem("announcement").value
 		};
 
@@ -26,6 +27,7 @@ if(Product.controller.package.create){
 		event.target.elements.namedItem("weight").value = "";
 		event.target.elements.namedItem("image").value = "";
 		event.target.elements.namedItem("status").value = "Indisponível";
+		event.target.elements.namedItem("brand").value = "";
 		event.target.elements.namedItem("announcement").value = "";
 
 		document.getElementById("product-package-show-box").style.display = "none";
@@ -129,6 +131,7 @@ Product.controller.package.edit = async (id) => {
 	document.getElementById('product-package-create-form').elements.namedItem("weight").value = package.weight;
 	document.getElementById('product-package-create-form').elements.namedItem("image").value = package.image;
 	document.getElementById('product-package-create-form').elements.namedItem("status").value = package.status;
+	document.getElementById('product-package-create-form').elements.namedItem("brand").value = package.brand;
 	document.getElementById('product-package-create-form').elements.namedItem("announcement").value = package.announcement;
 };
 
