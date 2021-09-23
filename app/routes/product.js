@@ -38,7 +38,7 @@ router.delete('/price/category/delete', lib.route.toHttps, productController.pri
 
 router.get('/package', lib.route.toHttps, productController.package.index);
 router.post('/package/save', lib.route.toHttps, productController.package.save);
-router.get('/package/filter', lib.route.toHttps, productController.package.filter);
+router.post('/package/filter', lib.route.toHttps, productController.package.filter);
 router.get('/package/id/:id', lib.route.toHttps, productController.package.findById);
 router.delete('/package/delete', lib.route.toHttps, productController.package.delete);
 router.post('/package/product/update', lib.route.toHttps, productController.package.product.update);

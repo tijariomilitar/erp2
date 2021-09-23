@@ -1,6 +1,8 @@
 const Product = require('../../model/product/main');
 Product.package = require('../../model/product/package');
 
+const lib = require("jarmlib");
+
 const productController = require('./main');
 
 const userController = require('./../user');
@@ -72,20 +74,15 @@ productController.package.filter = async (req, res) => {
 	const params = { keys: [], values: [] };
 	const strict_params = { keys: [], values: [] };
 
-	lib.Query.fillParam("product.code", req.body.product.code, strict_params);
-	lib.Query.fillParam("product.name", req.body.product.name, params);
-	lib.Query.fillParam("product.color", req.body.product.color, strict_params);
+	lib.Query.fillParam("package.code", req.body.package.code, strict_params);
+	lib.Query.fillParam("package.name", req.body.package.name, params);
+	lib.Query.fillParam("package.color", req.body.package.color, strict_params);
 
-	let order_params = [ ["product.code","ASC"] ];
+	let order_params = [ ["package.code","ASC"] ];
 
 	try {
-		if(req.query.name){
-			const packages = await Product.package.filter(req.query.name, params, values);
-			res.send({ packages });
-		} else {
-			const packages = await Product.package.filter(false, params, values);
-			res.send({ packages });
-		};
+		const packages = await Product.package.filter(props, inners, params, strict_params, order_params);
+		res.send({ packages });
 	} catch (err) {
 		console.log(err);
 		res.send({ msg: "Ocorreu um erro ao filtrar os produtos." });

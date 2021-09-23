@@ -1,6 +1,7 @@
 const db = require('../../../config/connection');
 const Product = require('./main');
 const lib = require("../../../config/lib");
+const Lib = require("jarmlib");
 
 Product.package = {
 	save: async (package) => {
@@ -26,8 +27,9 @@ Product.package = {
 		let query = "SELECT * FROM cms_wt_erp.product_package ORDER BY code ASC;";
 		return db(query);
 	},
-	filter: async (name, params, values) => {
-		let query = lib.filterQueryName(name, params, values, "cms_wt_erp", "product_package", "code", "ASC");
+	filter: async (props, inners, params, strict_params, order_params) => {
+		let query = new Lib.Query().select().props(props).table("cms_wt_erp.product_package package")
+			.inners(inners).params(params).strictParams(strict_params).order(order_params).build().query;
 		return db(query);
 	},
 	findByCode: async (code) => {

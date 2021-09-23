@@ -14,8 +14,12 @@ Product.package.save = async (package) => {
 	return response.package;
 };
 
-Product.package.filter = async (package) => {
-	let response = await fetch("/product/package/filter?code="+package.code+"&name="+package.name+"&color="+package.color);
+Product.package.filter = async package => {
+	let response = await fetch("/product/package/filter", {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+	    body: JSON.stringify({ package })
+	});
 	response = await response.json();
 
 	if(API.verifyResponse(response)){ return false };
