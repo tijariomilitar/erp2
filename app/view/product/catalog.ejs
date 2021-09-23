@@ -1,0 +1,60 @@
+<html>
+	<head>
+        <% include ./../partials/head %>
+	</head>
+	<body>
+		<% include ./../partials/header %>
+        <% include ./../partials/nav %>
+		<section>
+			<div class="container">
+				<div class="box-1">
+					<form id="product-filter-form" class="box-1">
+						<input type="hidden" name="session" value="catalog">
+						<input type="text" name="name" class="btn-generic-small" placeholder="Nome" autocomplete="off">
+						<input type="text" name="code" class="btn-generic-small" placeholder="Cód" autocomplete="off">
+						<select name="color" id="product-catalog-color" class="btn-generic-small" autocomplete="off">
+							<option value="">Cor</option>
+							<% for(i in productColors){ %>
+								<option value="<%= productColors[i].shortcut %>"><%= productColors[i].name %></option>
+							<% } %>
+						</select>
+						<select name="brand" class="btn-generic-big">
+							<option value="">Marca do Produto</option>
+							<option value="Sem marca">Sem marca</option>
+							<option value="J.A Rio Militar">J.A Rio Militar</option>
+						</select>
+						<input type="submit" class="btn-submit" value="Filtrar">
+					</form>
+					<div id="product-div" style="display:none">
+						<table class="tbl-info box-1" id="product-tbl"></table>
+						<br>
+						<button id="productPrevious" autocomplete="off" disabled>&lsaquo;&lsaquo;</button>
+	                    <span id="productPageNumber"></span>
+	                    <button id="productNext" autocomplete="off" disabled>&rsaquo;&rsaquo;</button>
+					</div>
+				</div>
+				
+				<div class="box-1" id="product-show-box" style="display:none;">
+					<table class="tbl-info box-1" id="product-show-tbl">
+						<tr>
+							<td>Cód</td>
+							<td>Nome</td>
+							<td>Tamanho</td>
+							<td>Cor</td>
+						</tr>
+						<tbody id="product-show-tbody"></tbody>
+					</table>
+					<div class="box-1" id="product-image-show"></div>
+					<button id="imagePrevious" autocomplete="off" disabled>&lsaquo;&lsaquo;</button>
+                    <span id="imagePageNumber"></span>
+                    <button id="imageNext" autocomplete="off" disabled>&rsaquo;&rsaquo;</button>
+				</div>
+			</div>
+		</section>
+        <% include ./../partials/loader %>
+	</body>
+	<footer>
+        <% include ./../partials/footer %>
+        <% include ./partial %>
+	</footer>
+</html>

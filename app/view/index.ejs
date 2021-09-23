@@ -1,0 +1,47 @@
+<html>
+	<head>
+        <% include ./partials/head %>
+	</head>
+	<body>
+		<header>
+			<img class="pointer width-150" onclick="window.location.href='/'" src="/images/favicon/favicon-black.png">
+			<div class="right">
+				<img class='icon size-45' onclick="window.location.href='/login'" src="/images/icon/login.png">
+			</div>
+		</header>
+		<section>
+			<div class="container">
+                <div class="box b1 center ground padding-10 margin-top-15">
+                	<h2 class="box b1 padding-10">Catálogo de produtos</h2>
+					<form id="product-catalog-filter-form" class="box b1 ground">
+						<input type="hidden" name="location" value="product-catalog">
+						<input type="text" name="code" class="btn-generic-big" placeholder="Cód" autocomplete="off">
+						<input type="text" name="name" class="btn-generic-big" placeholder="Nome" autocomplete="off">
+						<select name="color" class="btn-generic-big" name="color">
+							<option value="">Cor</option>
+							<% for(i in productColors){ %>
+								<option value="<%= productColors[i].shortcut %>"><%= productColors[i].name %></option>
+							<% } %>
+						</select>
+						<input type="submit" class="btn-generic-big bold" value="Filtrar">
+					</form>
+				</div>
+				<div id="product-catalog-filter-box" class="box b1 center hide">
+					<div id="product-catalog-container" class="container"></div>
+	        		<% include ./partials/carousel %>
+				</div>
+			</div>
+		</section>
+        <% include ./partials/loader %>
+	</body>
+	<footer>
+        <% include ./partials/footer %>
+		<script src="/javascripts/scripts/product/model/main.js"></script>
+		<script src="/javascripts/scripts/product/view/main.js"></script>
+		<script src="/javascripts/scripts/product/controller/main.js"></script>
+		<script src="/javascripts/scripts/product/controller/catalog.js"></script>
+
+		<script src="/javascripts/scripts/product/controller/catalog.js"></script>
+		<script src="/javascripts/scripts/product/view/catalog.js"></script>
+	</footer>
+</html>
