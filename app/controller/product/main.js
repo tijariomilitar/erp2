@@ -40,7 +40,7 @@ productController.manage = async (req, res) => {
 };
 
 productController.save = async (req, res) => {
-	if(!await userController.verifyAccess(req, res, ['adm','adm-vis'])){
+	if(!await userController.verifyAccess(req, res, ['adm','adm-vis','adm-man'])){
 		return res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
 	};
 
