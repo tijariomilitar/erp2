@@ -12,7 +12,7 @@ Product.category = function() {
 	};
 };
 
-Product.category.list = async () => {
+Product.category.list = () => {
 	let query = "SELECT * FROM backup.product_category ORDER BY name ASC;";
 	return db(query);
 };

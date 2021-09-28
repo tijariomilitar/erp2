@@ -4,7 +4,6 @@ Product.controller.create = document.getElementById("product-create-form");
 if(Product.controller.create){
 	document.getElementById("product-create-form").addEventListener("submit", async (event) => {
 		event.preventDefault();
-		event.target.elements.namedItem("submit").disabled = true;
 
 		let product = {
 			id: event.target.elements.namedItem("id").value,
@@ -22,7 +21,7 @@ if(Product.controller.create){
 		product = await API.response(Product.save, product);
 		if(!product){ return false };
 
-		document.getElementById("product-filter-form").submit.click();
+		Product.controller.filter.submit.click();
 
 		event.target.elements.namedItem("id").value = "";
 		event.target.elements.namedItem("code").value = "";
@@ -89,4 +88,12 @@ Product.controller.show = async (product_id) => {
 	
 	const pagination = { pageSize: 1, page: 0 };
 	(function(){ lib.carousel.execute("product-image-box", Product.view.image.show, product.images, pagination); }());
+};
+
+Product.controller.delete = async (product_id) => {
+	let r = confirm('Deseja realmente cancelar a despesa?');
+	if(r){
+		if(!await API.response(Product.delete, product_id)){ return false; };
+		Product.controller.filter.submit.click();
+	}
 };
